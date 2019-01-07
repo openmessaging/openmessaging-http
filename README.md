@@ -11,8 +11,8 @@ All the meta info of message is in the HTTP header, and message body is put in t
 
 ### http headers 
 
-Header | Constraints | Demo | Description
-- | -
+ Header | Constraints | Demo | Description 
+|-|-|-|-|
 x-oms-version | Required| 1.0.0 | version of OMS
 x-oms-h-destination| Required | orderQueue | See [message model](https://github.com/openmessaging/specification/blob/master/specification-schema.md#2-message-model) for details.
 x-oms-h-messageId| Required | 7F00000100002873000000000004F49C | See [message model](https://github.com/openmessaging/specification/blob/master/specification-schema.md#2-message-model) for details.
@@ -35,8 +35,9 @@ x-oms-p-service | OPTIONAL | helloService | All properties start with `x-oms-p-`
 
 
 #### http status code 
+
 status code | Description 
-- | -
+|- | -
 200 | Success 
 4xx or 5xx | Failed. Detailed error code or failure reason is decided by the underlying vendor
 
@@ -57,18 +58,18 @@ In pull mode, the consumer get message in the request and response mode.
 At most one message would be returned for one pull request.
 Useful for testing and low qps consuming scenario.
 
-####Pull Request
+#### Pull Request
 http header  |Constraints| Description | 
-- | - | -
+|- | - | -
 x-oms-version | Required | version of OMS
 x-oms-consumerId | Required|   user defined client Id. (e.g. consumer group in RocketMQ/Kafka)
 x-oms-source| Required | consume message from this queue or topic. See x-oms-h-destination in producer.
 x-oms-ack | OPTIONAL | If set true, ack is required for the `at least once` delivery semantics. False is default value for `at most once` delivery semantics
 x-oms-waitMills | OPTIONAL | Time in milliseconds for waiting message. Used in long polling. 
 
-####Pull Response
+#### Pull Response
 status code | Description 
-- | -
+|- | -
 200 | Success, with message 
 204 | Success, no new message 
 4xx or 5xx | Failed. Detailed error code or failure reason is decided by the underlying vendor
@@ -81,7 +82,7 @@ The main difference between pull and push mode is that, in push mode, you can ge
 #### Push Reqeust
 
 http header  |Constraints| Description | 
-- | - | -
+|- | - | -
 x-oms-version | Required | version of OMS
 x-oms-consumerId | Required|   user defined client Id. (e.g. consumer group in RocketMQ/Kafka)
 x-oms-source| Required | consume message from this queue or topic. See x-oms-h-destination in producer.
@@ -91,7 +92,7 @@ x-oms-callbackURL | OPTIONAL | Enable `callback push mode`, server will post mes
 
 #### Push Response
 status code | Description 
-- | -
+|- | -
 200 | Success. 
 4xx or 5xx | Failed. Detailed error code or failure reason is decided by the underlying vendor
 
